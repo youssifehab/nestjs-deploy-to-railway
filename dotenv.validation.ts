@@ -10,6 +10,7 @@ enum Environment {
 
 class EnvironmentVariables {
   @IsEnum(Environment)
+  @Transform(({ value }) => value?.trim())
   NODE_ENV: Environment;
 
   @Type(() => Number)
@@ -51,7 +52,8 @@ export function validate(config: Record<string, unknown>) {
   });
 
   if (errors.length > 0) {
-    throw new Error(errors.toString());
+    console.error(JSON.stringify(errors, null, 2));
+    throw new Error('Config validation failed. See error output above.');
   }
 
   return validatedConfig;
