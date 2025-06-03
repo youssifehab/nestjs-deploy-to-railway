@@ -1,0 +1,12 @@
+diff --git a/node_modules/@nestjs/typeorm/dist/common/typeorm.utils.js b/node_modules/@nestjs/typeorm/dist/common/typeorm.utils.js
+index ac6eeb1..d6ae66c 100644
+--- a/node_modules/@nestjs/typeorm/dist/common/typeorm.utils.js
++++ b/node_modules/@nestjs/typeorm/dist/common/typeorm.utils.js
+@@ -13,6 +13,7 @@ const operators_1 = require("rxjs/operators");
+ const typeorm_1 = require("typeorm");
+ const circular_dependency_exception_1 = require("../exceptions/circular-dependency.exception");
+ const typeorm_constants_1 = require("../typeorm.constants");
++const crypto = require('crypto');
+ const logger = new common_1.Logger('TypeOrmModule');
+ /**
+  * This function generates an injection token for an Entity or Repository
