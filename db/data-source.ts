@@ -35,9 +35,6 @@ export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
   },
 };
 
-console.log(process.env.NODE_ENV);
-console.log(process.env.DB_HOST);
-console.log(process.env.DB_PASSWORD);
 export const dataSourceOptions: DataSourceOptions = {
   type: 'postgres',
   host: process.env.DB_HOST,
