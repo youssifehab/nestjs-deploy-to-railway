@@ -35,6 +35,8 @@ class EnvironmentVariables {
 }
 
 export function validate(config: Record<string, unknown>) {
+  const cleanedConfig = cleanEnv(config);
+
   // console.log('config ', config);
   const validatedConfig = plainToInstance(EnvironmentVariables, config, {
     enableImplicitConversion: true,
@@ -49,4 +51,18 @@ export function validate(config: Record<string, unknown>) {
     throw new Error(errors.toString());
   }
   return validatedConfig;
+}
+
+function cleanEnv(config: Record<string, unknown>) {
+  const cleaned = { ...config };
+
+  for (const key in cleaned) {
+    const value = cleaned[key];
+    if (typeof value === 'string') {
+      // Strip surrounding quotes
+      cleaned[key] = value.replace(/^"(.*)"$/, '$1');
+    }
+  }
+
+  return cleaned;
 }
