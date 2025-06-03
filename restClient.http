@@ -1,0 +1,124 @@
+##################### SONG #####################
+
+### Hello world
+GET http://localhost:3001
+
+
+### fetch songs request
+GET http://localhost:3001/songs?page=1&limit=10
+
+### fetch song by id request
+GET http://localhost:3001/songs/6
+
+### create song request
+POST http://localhost:3001/songs
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFydGlzdEBnbWFpbC5jb20iLCJ1c2VySWQiOjIsImFydGlzdElkIjoxLCJpYXQiOjE3NDQ3MTAyNDcsImV4cCI6MTc0NDc5NjY0N30.IjWViVW3Df2JR9SH6Iek9xttVe4sZCt2f_sWDQFXVao
+
+{
+    "title": "new song5",
+    "artists": [ 1, 2],
+    "releasedDate": "2025-01-01",
+    "duration": "02:34"
+}
+
+### update song request
+PATCH http://localhost:3001/songs/12
+Content-Type: application/json
+
+{
+    "lyrics": "call me"
+}
+
+### delete songs request
+DELETE http://localhost:3001/songs/8
+
+
+
+
+##################### PLAYLIST #####################
+
+### Create song request
+POST http://localhost:3001/playlists
+Content-Type: application/json
+
+{
+    "name": "Feel Good Now",
+    "songs": [6],
+    "user": 1
+}
+
+##################### USER #####################
+
+### Signup
+POST http://localhost:3001/auth/signup
+Content-Type: application/json
+
+{
+    "firstName": "john",
+    "lastName": "don",
+    "email": "john2@gmail.com",
+    "password": "12345678"
+}
+
+### Login
+POST http://localhost:3001/auth/login
+Content-Type: application/json
+
+{
+    "email": "ah@hotmail.com",
+    "password": "123456789"
+}
+
+### access token: 
+### eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwic3ViIjoxLCJpYXQiOjE3NDQ2Mjk4MzMsImV4cCI6MTc0NDcxNjIzM30.A2jTHKil853TZSzQE2SmtiRWu6q-0qyGvdqBs51tu6U
+
+### profile
+GET http://localhost:3001/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFoQGhvdG1haWwuY29tIiwidXNlcklkIjoxMCwiaWF0IjoxNzQ4MzM0MzQzLCJleHAiOjE3NDg0MjA3NDN9.H65O-QPoCk_f5hULq5bKkuyzJ0jIiujNXdWc9bVQS98
+
+
+### Artist (signup artist)
+POST http://localhost:3001/auth/signup
+Content-Type: application/json
+
+{
+    "firstName": "artist",
+    "lastName": "artist",
+    "email": "artist@gmail.com",
+    "password": "12345678"
+}
+
+### Login Aritst
+POST http://localhost:3001/auth/login
+Content-Type: application/json
+
+{
+    "email": "artist@gmail.com",
+    "password": "12345678"
+}
+
+### Enable 2FA
+GET http://localhost:3001/auth/enable-2fa
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwidXNlcklkIjoxLCJpYXQiOjE3NDQ4OTk2MDcsImV4cCI6MTc0NDk4NjAwN30.R-xV-fxFSEjy-obo0bJiRqNW1SEZHk84vLfhONjpQ5w
+
+### verify 2FA
+POST http://localhost:3001/auth/validate-2fa
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwidXNlcklkIjoxLCJpYXQiOjE3NDQ4OTk2MDcsImV4cCI6MTc0NDk4NjAwN30.R-xV-fxFSEjy-obo0bJiRqNW1SEZHk84vLfhONjpQ5w
+Content-Type: application/json
+
+{
+    "token": "168347"
+}
+
+### disable 2FA
+PATCH http://localhost:3001/auth/disable-2fa
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwidXNlcklkIjoxLCJpYXQiOjE3NDQ4OTk2MDcsImV4cCI6MTc0NDk4NjAwN30.R-xV-fxFSEjy-obo0bJiRqNW1SEZHk84vLfhONjpQ5w
+
+
+### get profile using api key
+GET http://localhost:3001/auth/profile
+Authorization: Bearer be76190e-2664-48cd-a14c-62ed8ca68bb6
+
+### get port
+GET http://localhost:3001/auth/port
