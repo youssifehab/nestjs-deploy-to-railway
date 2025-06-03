@@ -1,4 +1,4 @@
-import { plainToInstance, Type } from 'class-transformer';
+import { plainToInstance, Transform, Type } from 'class-transformer';
 import { IsEnum, IsNumber, IsString, validateSync } from 'class-validator';
 
 enum Environment {
@@ -13,26 +13,31 @@ class EnvironmentVariables {
   NODE_ENV: Environment;
 
   @Type(() => Number)
-  @IsNumber()
+  @IsNumber({}, { message: 'PORT must be a number' })
   PORT: number;
 
-  @IsString()
+  @Transform(({ value }) => value?.trim())
+  @IsString({ message: 'SECRET must be a string' })
   SECRET: string;
 
-  @IsString()
+  @Transform(({ value }) => value?.trim())
+  @IsString({ message: 'DB_HOST must be a string' })
   DB_HOST: string;
 
   @Type(() => Number)
-  @IsNumber()
+  @IsNumber({}, { message: 'DB_PORT must be a number' })
   DB_PORT: number;
 
-  @IsString()
+  @Transform(({ value }) => value?.trim())
+  @IsString({ message: 'DB_USERNAME must be a string' })
   DB_USERNAME: string;
 
-  @IsString()
+  @Transform(({ value }) => value?.trim())
+  @IsString({ message: 'DB_PASSWORD must be a string' })
   DB_PASSWORD: string;
 
-  @IsString()
+  @Transform(({ value }) => value?.trim())
+  @IsString({ message: 'DB_NAME must be a string' })
   DB_NAME: string;
 }
 
